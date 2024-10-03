@@ -43,23 +43,4 @@ canvas_result = st_canvas(
     key="canvas",
 )
 
-# Add "Predict Now" button
-if st.button('Predecir'):
-    if canvas_result.image_data is not None:
-        input_numpy_array = np.array(canvas_result.image_data)
-        input_image = Image.fromarray(input_numpy_array.astype('uint8'),'RGBA')
-        input_image.save('prediction/img.png')
-        img = Image.open("prediction/img.png")
-        res = predictDigit(img)
-        st.header('El Digito es : ' + str(res))
-    else:
-        st.header('Por favor dibuja en el canvas el digito.')
 
-# Add sidebar
-st.sidebar.title("Acerca de:")
-st.sidebar.text("En esta aplicación se evalua ")
-st.sidebar.text("la capacidad de un RNA de reconocer") 
-st.sidebar.text("digitos escritos a mano.")
-st.sidebar.text("Basado en desarrollo de Vinay Uniyal")
-#st.sidebar.text("GitHub Repository")
-#st.sidebar.write("[GitHub Repo Link](https://github.com/Vinay2022/Handwritten-Digit-Recognition)")
